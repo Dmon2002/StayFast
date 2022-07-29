@@ -6,19 +6,20 @@ namespace StayFast
 {
     public class Starter : MonoBehaviour
     {
+        [SerializeField] private AllDescriptions _descriptions;
         private GameInitialization _initialization;
         private UpdateController _update;
     
         private void Start()
         {
             _update = new UpdateController();
-            var initialization = new GameInitialization(_update);
+            var initialization = new GameInitialization(_update, _descriptions);
         }
 
     
-        void Update()
+        private void Update()
         {
-        
+            _update.Execute(Time.deltaTime);
         }
     }
 }
