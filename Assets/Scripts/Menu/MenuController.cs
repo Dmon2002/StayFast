@@ -46,12 +46,16 @@ namespace StayFast
 
         private void OnClickPaused()
         {
+            Debug.Log($"{isPaused}");
+            
             switch (isPaused)
             {
                 case false:
+                    Debug.Log($"Мы открываем меню");
                     OpenPauseMenu();
                     return;
                 case true:
+                    Debug.Log($"Мы закрываем меню");
                     ClosePauseMenu();
                     break;
             }

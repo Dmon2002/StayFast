@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 namespace StayFast
 {
     public class StateController : BaseController
@@ -9,17 +11,20 @@ namespace StayFast
         private GlobalMoveController _globalMove;
         private GamePlayController _gamePlay;
         private ChangeDaysController _changeDays;
+        
 
-        public StateController(InputController input, AllDescriptions allDescriptions)
+        public StateController(InputController input, AllDescriptions allDescriptions, Transform canvas, 
+            CoroutineSystem coroutine)
         {
             _input = input;
             _allDescriptions = allDescriptions;
             _profilePlayer = new ProfilePlayer();
             _profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
             OnChangeGameState(_profilePlayer.CurrentState.Value);
+            var animator = allDescriptions.NightConfig.Loading(canvas);
+            _changeDays = new ChangeDaysController(animator);
             
-            
-            
+            _changeDays.ChangeDays(allDescriptions.NightConfig);
         }
 
 

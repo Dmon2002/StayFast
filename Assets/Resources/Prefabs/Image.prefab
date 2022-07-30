@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6557493091925974244}
   - component: {fileID: 6557493091925974245}
   - component: {fileID: 6557493091925974243}
+  - component: {fileID: 8260663976657420688}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -97,3 +98,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8260663976657420688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557493091925974241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865af69cbd9e45ca99ab9419667036b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sleeping: {fileID: 0}

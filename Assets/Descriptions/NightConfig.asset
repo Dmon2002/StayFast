@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: NightConfig
   m_EditorClassIdentifier: 
   nightImageString: Prefabs/Image
+  tubeString: Square
+  massageString: Capsule
