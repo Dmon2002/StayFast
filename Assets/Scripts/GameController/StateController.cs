@@ -6,20 +6,19 @@ namespace StayFast
         private readonly InputController _input;
         private readonly AllDescriptions _allDescriptions;
         private readonly ProfilePlayer _profilePlayer;
+        private GlobalMoveController _globalMove;
+        private GamePlayController _gamePlay;
+        private ChangeDaysController _changeDays;
 
-        private double helpInt;
-        private double _timeLoading;
-        
         public StateController(InputController input, AllDescriptions allDescriptions)
         {
             _input = input;
             _allDescriptions = allDescriptions;
-            
-            
             _profilePlayer = new ProfilePlayer();
-            
             _profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
             OnChangeGameState(_profilePlayer.CurrentState.Value);
+            
+            
             
         }
 
@@ -33,14 +32,10 @@ namespace StayFast
         {
             switch (state)
             {
-                case GameState.None:
-                    //
-                    break;
-                case GameState.Loading:
-                    // 
-                    break;
                 case GameState.Game:
                     //
+                    break;
+                case GameState.ChangeDays:
                     break;
             }
         }

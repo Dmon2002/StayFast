@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace StayFast
@@ -7,12 +8,11 @@ namespace StayFast
         public GameInitialization(UpdateController update, AllDescriptions descriptions, Transform canvas)
         {
             var input = new InputController();
-            var stateController = new StateController(input, descriptions);
             var instantiate = new GameObject().AddComponent<MonoFactory>();
+            var stateController = new StateController(input, descriptions);
 
-            var go = Loader.Load<GameObject>("Prefabs/UI/PauseMenu");
-            var instant = instantiate.Instant(go, canvas);
-            var view = instant.GetComponent<MenuView>();
+            var menuFactory = new MenuFactory(instantiate, canvas);
+            var view = menuFactory.CreateMenu();
             var menu = new MenuController(view, input, instantiate);
 
             update.Add(input);
