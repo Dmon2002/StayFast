@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edc5d2efe354972a31da0c12b62ab67, type: 3}
   m_Name: AllDescriptions
   m_EditorClassIdentifier: 
+  nightConfig: {fileID: 11400000, guid: 96774e34af6c4fa4dbd91c9b6f8a1587, type: 2}
