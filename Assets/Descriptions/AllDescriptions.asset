@@ -15,3 +15,5 @@ MonoBehaviour:
   nightConfig: {fileID: 11400000, guid: 96774e34af6c4fa4dbd91c9b6f8a1587, type: 2}
   tubeConfig: {fileID: 11400000, guid: 2be6f3bdb5995de41bf8013cb8f63291, type: 2}
   daysConfig: {fileID: 11400000, guid: 222049fc58c1b0742a85d77805da0476, type: 2}
+  _background: {fileID: 0}
+  _soundLocator: {fileID: -8326551889095415738, guid: 1f47fb556522a944a8c1b5df80d459cd, type: 3}

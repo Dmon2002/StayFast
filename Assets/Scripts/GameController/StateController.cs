@@ -28,8 +28,9 @@ namespace StayFast
             _profilePlayer = new ProfilePlayer();
             _profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
             OnChangeGameState(_profilePlayer.CurrentState.Value);
+            var locator = instantiate.Instant(_allDescriptions.SoundLocator.gameObject, new GameObject("SoundLocator").transform);
 
-            _soundLocator = _allDescriptions.SoundLocator;
+            _soundLocator = locator.GetComponent<SoundLocator>();
             _soundLocator.Init();
             Sounding.Init(_soundLocator.AudioDictionary);
 
