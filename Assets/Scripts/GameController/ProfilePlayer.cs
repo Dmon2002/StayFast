@@ -15,6 +15,7 @@ namespace StayFast
         None,
         Loading,
         Game,
-        ChangeDays
+        ChangeDays,
+        End
     }
 }

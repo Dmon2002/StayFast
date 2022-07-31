@@ -10,24 +10,27 @@ namespace StayFast
         private TubeView _tube;
         private MessageView _currentMessage;
         private CoroutineSystem _coroutine;
-
-        private Vector3 vector = new Vector3();
+        private readonly ProfilePlayer _profile;
+        
+        private int counter;
         private const float speed = 3f;
         
         public ChangeDaysController(NightView nightView, TubeView tube, MessageView messageView, 
-            InputController input, CoroutineSystem coroutine)
+            InputController input, CoroutineSystem coroutine, ProfilePlayer profile)
         {
             _nightView = nightView;
             _tube = tube;
             _currentMessage = messageView;
             _input = input;
             _coroutine = coroutine;
+            _profile = profile;
             
             _nightView.OnEndNight += StartMessage;
         }
 
         public IEnumerator ChangeDays(Sprite tube, Sprite massage)
         {
+            counter++;
             _nightView.gameObject.SetActive(true);
             _nightView.Sleeping.enabled = true;
             yield return new WaitForSeconds(0.5f);              //todo магическое число
@@ -75,6 +78,14 @@ namespace StayFast
             }
             _currentMessage.gameObject.SetActive(false);
             _coroutine.StopAllCoroutine();
+            
+            if (counter == 3)
+            {
+                _profile.CurrentState.Value = GameState.End;
+            }
+            
+            if(counter < 3)
+                _profile.CurrentState.Value = GameState.Game;
         }
     }
 }

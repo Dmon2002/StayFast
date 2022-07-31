@@ -25,7 +25,7 @@ namespace StayFast
         {
             int count = 0;
 
-            while (count < 2)
+            while (count < 5)
             {
                 yield return new WaitForSeconds(1);
                 count++;
