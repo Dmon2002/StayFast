@@ -78,13 +78,15 @@ public class MainMechanic : MonoBehaviour
         {
             if (IsTouched)
             {
-                
+                Sounding.PlayAudio(ClipType.TapeLose);
                 PulsReLocate();
                 slider.value = slider.value - AdrenalinSpeedMinus;
             }
+            
             else
             {
-            
+
+                Sounding.PlayAudio(ClipType.TapeWin);
            
                 slider.value = slider.value + AdrenalinSpeedPlus;
             }

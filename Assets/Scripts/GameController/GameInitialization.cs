@@ -16,7 +16,9 @@ namespace StayFast
 
             var menuFactory = new MenuFactory(instantiate, canvas);
             var view = menuFactory.CreateMenu();
+
             var menu = new MenuController(view, input, instantiate, descriptions.SoundLocator);
+
             button.onClick.AddListener(menu.OnClickPaused);
 
             update.Add(input);

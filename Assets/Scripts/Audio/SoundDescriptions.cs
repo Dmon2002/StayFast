@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace StayFast
 {
-    public class SoundLocator : MonoBehaviour
+    public class SoundDescriptions : MonoBehaviour
     {
         [SerializeField] private SoundDescript[] allSound;
 
@@ -20,20 +20,7 @@ namespace StayFast
             }
         }
 
-        public void PlayAudio(ClipType type)
-        {
-            var sound = audioDictionary[type];
-            sound.enabled = true;
-            sound.Play();
-        }
-
-        public void StopAudio(ClipType type)
-        {
-            var sound = audioDictionary[type];
-            sound.enabled = false;
-            sound.Stop();
-        }
-
-
+       
+        
     }
 }

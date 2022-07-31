@@ -6,6 +6,7 @@ namespace StayFast
     public class MenuController : BaseController, IDisposable
     {
         private MenuView _view;
+
         private SoundLocator _sound;
 
         private bool isPaused;
@@ -32,10 +33,12 @@ namespace StayFast
 
         private void OnClickAboutUs()
         {
-        
-            _sound.PlayAudio(ClipType.Paper);
+
+            Debug.Log($"Mы нажали на About Us");
+
+            Sounding.PlayAudio(ClipType.Paper);
             
-            
+   
             _view.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             _view.PanelAboutUs.SetActive(true);
             _view.CloseAbout.gameObject.SetActive(true);
@@ -44,8 +47,9 @@ namespace StayFast
 
         private void CloseAbout()
         {
-            _sound.PlayAudio(ClipType.Paper);
-            
+
+            Sounding.PlayAudio(ClipType.Paper);
+
             _view.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             _view.PanelAboutUs.SetActive(false);
             _view.CloseAbout.gameObject.SetActive(false);
@@ -53,7 +57,9 @@ namespace StayFast
 
         public void OnClickPaused()
         {
-            _sound.PlayAudio(ClipType.Paper);
+
+            Debug.Log($"{isPaused}");
+            Sounding.PlayAudio(ClipType.Paper);
             
             switch (isPaused)
             {
@@ -70,7 +76,11 @@ namespace StayFast
         
         private void OpenPauseMenu()
         {
-            _sound.PlayAudio(ClipType.Paper);
+            Sounding.PlayAudio(ClipType.Paper);
+
+            // todo возможно делаем ещё какие-то дела
+
+            Sounding.PlayAudio(ClipType.Paper);
             
             _view.gameObject.SetActive(true);
             Time.timeScale = 0;
@@ -80,8 +90,10 @@ namespace StayFast
           
         private void ClosePauseMenu()
         {
-            _sound.PlayAudio(ClipType.Paper);
+
+            Sounding.PlayAudio(ClipType.Paper);
             
+
             Debug.Log("Мы зашли в закрывашку");
             _view.gameObject.SetActive(false);
             Time.timeScale = 1;

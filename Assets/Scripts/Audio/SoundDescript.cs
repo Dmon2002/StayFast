@@ -6,7 +6,8 @@ namespace StayFast
     [Serializable]
     public class SoundDescript
     {
-        [SerializeField] public string clip;
+        [SerializeField] public AudioSource clip;
+
         [SerializeField] public ClipType type;
     }
 }

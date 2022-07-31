@@ -14,7 +14,9 @@ namespace StayFast
         private GlobalDaysController _globalDays;
         private ChangeDaysFactory _changeDaysFactory;
         private CoroutineSystem _coroutine;
+
         private SoundLocator _soundLocator;
+
         
 
         public StateController(InputController input, AllDescriptions allDescriptions, Transform canvas, 
@@ -29,6 +31,8 @@ namespace StayFast
 
             _soundLocator = _allDescriptions.SoundLocator;
             _soundLocator.Init();
+            Sounding.Init(_soundLocator.AudioDictionary);
+
             // нужен спаун-контроллер, и класс, который бы собирал ChangeDaysController
             _changeDaysFactory = new ChangeDaysFactory(allDescriptions, instantiate, input, coroutine, _profilePlayer);
             _changeDays = _changeDaysFactory.CreateController();
@@ -42,12 +46,6 @@ namespace StayFast
 
         }
 
-
-        private void StartState()
-        {
-            _profilePlayer.CurrentState.Value = GameState.Loading;
-        }
-
         public void OnChangeGameState(GameState state)
         {
             switch (state)
@@ -55,7 +53,8 @@ namespace StayFast
                 case GameState.Game:
                     _coroutine.Starting(_globalDays.Timer());
                     Debug.Log("Здесь запускаем основную механику");
-                    _soundLocator.PlayAudio(ClipType.Soft);
+                    MainMechanic.AnimationGO();
+                    Sounding.PlayAudio(ClipType.Soft);
                     MainMechanic.AnimationGO();
                     break;
                 case GameState.End:

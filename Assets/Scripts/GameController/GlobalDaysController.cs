@@ -9,6 +9,7 @@ namespace StayFast
         private readonly ChangeDaysController _daysController;
         private readonly SoundLocator _soundLocator;
 
+
         private Stack<Sprite> tubeStack;
         private Stack<Sprite> massageStack;
         private CoroutineSystem _coroutine;
@@ -17,7 +18,9 @@ namespace StayFast
         {
             tubeStack = descriptions.DaysConfig.TubeSprite;
             massageStack = descriptions.DaysConfig.MassageSprite;
+
             _soundLocator = descriptions.SoundLocator;
+
             _coroutine = coroutine;
             
             _daysController = daysController;
@@ -34,8 +37,13 @@ namespace StayFast
                 Debug.Log($"Прошло секунд {count}");
                 // todo здесь отображаем время на UI
             }
+
             _soundLocator.StopAudio(ClipType.Soft);
             MainMechanic.AnimationStop();
+
+            Sounding.StopAudio(ClipType.Soft);
+            MainMechanic.AnimationStop();
+
 
             var tube = tubeStack.Pop();
             var massage = massageStack.Peek();
