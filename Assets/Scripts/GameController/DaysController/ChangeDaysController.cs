@@ -78,7 +78,9 @@ namespace StayFast
             }
             _currentMessage.gameObject.SetActive(false);
             _coroutine.StopAllCoroutine();
-            
+
+            MainMechanic.NewDay();
+
             if (counter == 3)
             {
                 _profile.CurrentState.Value = GameState.End;

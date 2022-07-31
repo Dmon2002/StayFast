@@ -12,9 +12,10 @@ namespace StayFast
         [SerializeField] private Button _pauseButton;
         private GameInitialization _initialization;
         private UpdateController _update;
-    
+
         private void Start()
         {
+
             _update = new UpdateController();
             var initialization = new GameInitialization(_update, _descriptions, _canvas, _pauseButton);
         }
@@ -24,6 +25,8 @@ namespace StayFast
         {
             _update.Execute(Time.deltaTime);
         }
+
+
     }
 }
 

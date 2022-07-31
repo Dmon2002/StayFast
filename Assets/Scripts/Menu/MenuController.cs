@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace StayFast
 {
     public class MenuController : BaseController, IDisposable
@@ -25,6 +25,7 @@ namespace StayFast
         {
             // todo
             Debug.Log("Мы нажали на рестарт");
+            SceneManager.LoadScene(0);
         }
 
         private void OnClickAboutUs()

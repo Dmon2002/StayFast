@@ -48,6 +48,7 @@ namespace StayFast
                 case GameState.Game:
                     _coroutine.Starting(_globalDays.Timer());
                     Debug.Log("Здесь запускаем основную механику");
+                    MainMechanic.AnimationGO();
                     break;
                 case GameState.End:
                     Debug.Log("Запускаем финальное видео");

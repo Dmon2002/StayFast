@@ -25,13 +25,14 @@ namespace StayFast
         {
             int count = 0;
 
-            while (count < 5)
+            while (count < 40)
             {
                 yield return new WaitForSeconds(1);
                 count++;
                 Debug.Log($"Прошло секунд {count}");
                 // todo здесь отображаем время на UI
             }
+            MainMechanic.AnimationStop();
 
             var tube = tubeStack.Pop();
             var massage = massageStack.Peek();
