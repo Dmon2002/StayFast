@@ -7,6 +7,7 @@ namespace StayFast
     public class GlobalDaysController : BaseController
     {
         private readonly ChangeDaysController _daysController;
+        private readonly SoundLocator _soundLocator;
 
         private Stack<Sprite> tubeStack;
         private Stack<Sprite> massageStack;
@@ -16,6 +17,7 @@ namespace StayFast
         {
             tubeStack = descriptions.DaysConfig.TubeSprite;
             massageStack = descriptions.DaysConfig.MassageSprite;
+            _soundLocator = descriptions.SoundLocator;
             _coroutine = coroutine;
             
             _daysController = daysController;
@@ -25,13 +27,14 @@ namespace StayFast
         {
             int count = 0;
 
-            while (count < 40)
+            while (count < 3)
             {
                 yield return new WaitForSeconds(1);
                 count++;
                 Debug.Log($"Прошло секунд {count}");
                 // todo здесь отображаем время на UI
             }
+            _soundLocator.StopAudio(ClipType.Soft);
             MainMechanic.AnimationStop();
 
             var tube = tubeStack.Pop();

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StayFast;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,7 +45,7 @@ public class MainMechanic : MonoBehaviour
         SR.color = colorPassive;
         StartCoroutine(Timer());
         PulsReLocate();
-        IsActive = true;//удалить
+        IsActive = true;//СѓРґР°Р»РёС‚СЊ
         slider = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
     }
 
@@ -77,6 +78,7 @@ public class MainMechanic : MonoBehaviour
         {
             if (IsTouched)
             {
+                
                 PulsReLocate();
                 slider.value = slider.value - AdrenalinSpeedMinus;
             }
@@ -123,7 +125,7 @@ public class MainMechanic : MonoBehaviour
     }
     public static void NewDay()
     {
-        slider.value =0;
+        slider.value = 0;
         anim.enabled = true;
     }
 }

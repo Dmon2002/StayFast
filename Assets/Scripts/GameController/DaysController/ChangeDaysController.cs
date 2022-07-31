@@ -48,7 +48,7 @@ namespace StayFast
 
         public IEnumerator OnEndNight()
         {
-            Debug.Log("Мы зашли в конец ночи, показываем анимацию сообщения");
+            
             _input.OnLeftMouseDown += AfterInput;
             _nightView.Sleeping.enabled = false;
             _currentMessage.gameObject.SetActive(true);

@@ -9,9 +9,12 @@ namespace StayFast
         [SerializeField] private TubeConfig tubeConfig;
         [SerializeField] private DaysConfig daysConfig;
         [SerializeField] private WithoutFunction _background;
+        [SerializeField] private SoundLocator _soundLocator;
 
         public NightConfig NightConfig => nightConfig;
         public TubeConfig TubeConfig => tubeConfig;
         public DaysConfig DaysConfig => daysConfig;
+
+        public SoundLocator SoundLocator => _soundLocator;
     }
 }

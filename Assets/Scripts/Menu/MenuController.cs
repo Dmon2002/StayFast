@@ -6,12 +6,14 @@ namespace StayFast
     public class MenuController : BaseController, IDisposable
     {
         private MenuView _view;
+        private SoundLocator _sound;
 
-        private bool isPaused = true;
+        private bool isPaused;
 
-        public MenuController(MenuView view, InputController input, MonoFactory factory)
+        public MenuController(MenuView view, InputController input, MonoFactory factory, SoundLocator sound)
         {
             _view = view;
+            _sound = sound;
             
             input.OnClickESC += OnClickPaused;
             _view.Resume.onClick.AddListener(OnClickPaused);
@@ -30,8 +32,10 @@ namespace StayFast
 
         private void OnClickAboutUs()
         {
-            Debug.Log($"Mы нажали на About Us");
-            // todo добавить окно с описанием всех нас
+        
+            _sound.PlayAudio(ClipType.Paper);
+            
+            
             _view.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             _view.PanelAboutUs.SetActive(true);
             _view.CloseAbout.gameObject.SetActive(true);
@@ -40,6 +44,8 @@ namespace StayFast
 
         private void CloseAbout()
         {
+            _sound.PlayAudio(ClipType.Paper);
+            
             _view.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             _view.PanelAboutUs.SetActive(false);
             _view.CloseAbout.gameObject.SetActive(false);
@@ -47,7 +53,7 @@ namespace StayFast
 
         public void OnClickPaused()
         {
-            Debug.Log($"{isPaused}");
+            _sound.PlayAudio(ClipType.Paper);
             
             switch (isPaused)
             {
@@ -64,7 +70,8 @@ namespace StayFast
         
         private void OpenPauseMenu()
         {
-            // todo возможно делаем ещё какие-то дела
+            _sound.PlayAudio(ClipType.Paper);
+            
             _view.gameObject.SetActive(true);
             Time.timeScale = 0;
             isPaused = true;
@@ -73,6 +80,8 @@ namespace StayFast
           
         private void ClosePauseMenu()
         {
+            _sound.PlayAudio(ClipType.Paper);
+            
             Debug.Log("Мы зашли в закрывашку");
             _view.gameObject.SetActive(false);
             Time.timeScale = 1;

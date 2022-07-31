@@ -7,18 +7,18 @@ namespace StayFast
     [RequireComponent(typeof(SpriteRenderer))]
     public class MessageView : MonoBehaviour
     {
-        [SerializeField] private Animator _animator;
+        // [SerializeField] private Animator _animator;
         private Transform _transform;
         public SpriteRenderer render;
 
         public Transform position => _transform;
 
-        public Animator animator => _animator;
+        // public Animator animator => _animator;
 
         private void Start()
         {
 
-            _animator.enabled = false;
+            // _animator.enabled = false;
             _transform = gameObject.transform;
             /*showMassage = gameObject.GetComponent<Animator>();
             render = gameObject.GetComponent<SpriteRenderer>();*/
