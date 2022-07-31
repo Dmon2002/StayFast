@@ -7,6 +7,7 @@ namespace StayFast
         Ambience,
         Paper,
         TapeLose,
-        TapeWin
+        TapeWin,
+        TapeWinTwo
     }
 }

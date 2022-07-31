@@ -87,7 +87,8 @@ public class MainMechanic : MonoBehaviour
             {
 
                 Sounding.PlayAudio(ClipType.TapeWin);
-           
+                Sounding.PlayAudio(ClipType.TapeWinTwo);
+
                 slider.value = slider.value + AdrenalinSpeedPlus;
             }
         }
