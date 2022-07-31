@@ -6,10 +6,18 @@ namespace StayFast
     public class MenuController : BaseController, IDisposable
     {
         private MenuView _view;
+<<<<<<< Updated upstream
+=======
+        private SoundDescriptions _sound;
+>>>>>>> Stashed changes
 
         private bool isPaused = true;
 
+<<<<<<< Updated upstream
         public MenuController(MenuView view, InputController input, MonoFactory factory)
+=======
+        public MenuController(MenuView view, InputController input, MonoFactory factory, SoundDescriptions sound)
+>>>>>>> Stashed changes
         {
             _view = view;
             
@@ -29,8 +37,15 @@ namespace StayFast
 
         private void OnClickAboutUs()
         {
+<<<<<<< Updated upstream
             Debug.Log($"Mы нажали на About Us");
             // todo добавить окно с описанием всех нас
+=======
+        
+            Sounding.PlayAudio(ClipType.Paper);
+            
+            
+>>>>>>> Stashed changes
             _view.gameObject.transform.GetChild(0).gameObject.SetActive(false);
             _view.PanelAboutUs.SetActive(true);
             _view.CloseAbout.gameObject.SetActive(true);
@@ -39,6 +54,11 @@ namespace StayFast
 
         private void CloseAbout()
         {
+<<<<<<< Updated upstream
+=======
+            Sounding.PlayAudio(ClipType.Paper);
+            
+>>>>>>> Stashed changes
             _view.gameObject.transform.GetChild(0).gameObject.SetActive(true);
             _view.PanelAboutUs.SetActive(false);
             _view.CloseAbout.gameObject.SetActive(false);
@@ -46,7 +66,11 @@ namespace StayFast
 
         public void OnClickPaused()
         {
+<<<<<<< Updated upstream
             Debug.Log($"{isPaused}");
+=======
+            Sounding.PlayAudio(ClipType.Paper);
+>>>>>>> Stashed changes
             
             switch (isPaused)
             {
@@ -63,7 +87,12 @@ namespace StayFast
         
         private void OpenPauseMenu()
         {
+<<<<<<< Updated upstream
             // todo возможно делаем ещё какие-то дела
+=======
+            Sounding.PlayAudio(ClipType.Paper);
+            
+>>>>>>> Stashed changes
             _view.gameObject.SetActive(true);
             Time.timeScale = 0;
             isPaused = true;
@@ -72,6 +101,11 @@ namespace StayFast
           
         private void ClosePauseMenu()
         {
+<<<<<<< Updated upstream
+=======
+            Sounding.PlayAudio(ClipType.Paper);
+            
+>>>>>>> Stashed changes
             Debug.Log("Мы зашли в закрывашку");
             _view.gameObject.SetActive(false);
             Time.timeScale = 1;

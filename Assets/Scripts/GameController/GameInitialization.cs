@@ -16,7 +16,11 @@ namespace StayFast
 
             var menuFactory = new MenuFactory(instantiate, canvas);
             var view = menuFactory.CreateMenu();
+<<<<<<< Updated upstream
             var menu = new MenuController(view, input, instantiate);
+=======
+            var menu = new MenuController(view, input, instantiate, descriptions.SoundDescriptions);
+>>>>>>> Stashed changes
             button.onClick.AddListener(menu.OnClickPaused);
 
             update.Add(input);
