@@ -12,6 +12,7 @@ namespace StayFast
         private void Awake()
         {
             Sleeping = gameObject.GetComponent<Animator>();
+            Sleeping.enabled = false;
         }
 
 

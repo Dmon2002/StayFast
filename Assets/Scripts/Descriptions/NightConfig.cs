@@ -1,51 +1,34 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace StayFast
 {
     [CreateAssetMenu(fileName = "NightConfig", menuName = "Descriptions/NightConfig")]
-    public class NightConfig : ScriptableObject, IDaysConfigs
+    public class NightConfig : ScriptableObject
     {
         [SerializeField] private string nightImageString;
         [SerializeField] private string tubeString;
         [SerializeField] private string massageString;
 
 
-        private Sprite tubeSprite;
-        private Sprite massageSprite;
+        private TubeView tubeSprite;
+        private MessageView _messageSprite;
         private NightView _animator;
 
-        public Sprite TubeSprite
-        {
-            get
-            {
-                if (tubeSprite == null)
-                    tubeSprite = Loader.Load<Sprite>("Sprites/" + tubeString);
-                return tubeSprite;
-            }
-        }
+        public TubeView TubeSprite => Loading<TubeView>(tubeString);
+
+        public MessageView MessageView => Loading<MessageView>(massageString);
+
+        public NightView NightView => Loading<NightView>(nightImageString);
         
-        public Sprite MassageSprite
+        public static T Loading<T>(string path) where T : Component
         {
-            get
-            {
-                if (massageSprite == null)
-                    massageSprite = Loader.Load<Sprite>("Sprites/" + massageString);
-                return massageSprite;
-            }
-        }
-
-        public NightView Loading(Transform canvas)
-        {
-            if (_animator == null)
-            {
-                var image = Loader.Load<Image>(nightImageString);
-                var instant = Instantiate(image, canvas);
-                _animator = instant.GetComponent<NightView>();
-                return _animator;
-            }
-
-            return _animator;
+                var image = Loader.Load<GameObject>(path);
+                var instant = Instantiate(image);
+                instant.SetActive(false);
+                var animator = instant.GetComponent<T>();
+                return animator;
         }
 
     }

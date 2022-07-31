@@ -7,6 +7,7 @@ namespace StayFast
     public class InputController : IExecute
     {
         public event Action OnClickESC;
+        public event Action OnLeftMouseDown;
 
         private readonly InputKeys _keys;
         // private readonly InputKeysData _inputKeysData;
@@ -19,6 +20,7 @@ namespace StayFast
         public void Execute(float deltaTime)
         {
             _keys.GetESC(OnClickESC);
+            _keys.GetMouseLeft(OnLeftMouseDown);
         }
     }
     

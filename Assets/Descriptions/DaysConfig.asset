@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 611f437bf82c4639b490a28498d270bc, type: 3}
-  m_Name: NightConfig
+  m_Script: {fileID: 11500000, guid: b3a5ffb14cc843af8fc5880d1efa027d, type: 3}
+  m_Name: DaysConfig
   m_EditorClassIdentifier: 
-  nightImageString: Prefabs/Night
-  tubeString: Prefabs/Pad
-  massageString: Prefabs/Square
+  tubePaths:
+  - Sprites/Pad
+  - Sprites/Pad
+  massagePaths:
+  - Sprites/Square
+  - Sprites/Square

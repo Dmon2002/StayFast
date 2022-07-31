@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace StayFast
 {
     public interface IDaysConfigs : IConfig
     {
-        Sprite TubeSprite { get; }
-        Sprite MassageSprite { get; }
+        Stack<Sprite> TubeSprite { get; }
+        Stack<Sprite> MassageSprite { get; }
         
     }
 

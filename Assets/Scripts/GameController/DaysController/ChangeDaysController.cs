@@ -1,36 +1,80 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace StayFast
 {
     public class ChangeDaysController : BaseController
     {
-        // знает о тех, кого меняет
-        private NightView _changingDays;
+        private readonly InputController _input;
+        private NightView _nightView;
         private TubeView _tube;
-        private MassageView _currentMassage;
+        private MessageView _currentMessage;
+        private CoroutineSystem _coroutine;
+
+        private Vector3 vector = new Vector3();
+        private const float speed = 3f;
         
-        public ChangeDaysController(NightView changingDays)
+        public ChangeDaysController(NightView nightView, TubeView tube, MessageView messageView, 
+            InputController input, CoroutineSystem coroutine)
         {
-            _changingDays = changingDays;
-            _changingDays.OnEndNight += OnEndNight;
-            // должны идентифицировать и создать эту пробирку где-то
+            _nightView = nightView;
+            _tube = tube;
+            _currentMessage = messageView;
+            _input = input;
+            _coroutine = coroutine;
+            
+            _nightView.OnEndNight += StartMessage;
         }
 
-        public void ChangeDays(IDaysConfigs configs)
+        public IEnumerator ChangeDays(Sprite tube, Sprite massage)
         {
-            _changingDays.Sleeping.Play("New State");
+            _nightView.gameObject.SetActive(true);
+            _nightView.Sleeping.enabled = true;
+            yield return new WaitForSeconds(0.5f);              //todo магическое число
+                
+            _tube.SetSprite(tube);          
+            _currentMessage.SetSprite(massage);
 
-            // _tube.SetSprite(configs.TubeSprite);
-            _changingDays.enabled = false;
+            
         }
 
-        public void OnEndNight()
+        public void StartMessage()
+        {
+            _coroutine.Starting(OnEndNight());
+        }
+
+        public IEnumerator OnEndNight()
         {
             Debug.Log("Мы зашли в конец ночи, показываем анимацию сообщения");
-            _currentMassage.showMassage.Play("");
+            _input.OnLeftMouseDown += AfterInput;
+            _nightView.Sleeping.enabled = false;
+            _currentMessage.gameObject.SetActive(true);
+
+            while (_currentMessage.gameObject.transform.position.y < -3.30)
+            {
+                _currentMessage.gameObject.transform.Translate(0, speed * Time.deltaTime, 0);
+                yield return null;
                 
+            }
+            
+        }
+
+        public void AfterInput()
+        {
+            Debug.Log("Мы закрываемся");
+            _input.OnLeftMouseDown -= AfterInput;
+            _coroutine.Starting(CloseMessage());
+        }
+
+        public IEnumerator CloseMessage()
+        {
+            while (_currentMessage.position.position.y > -8)
+            {
+                _currentMessage.position.Translate(0, -speed * Time.deltaTime, 0);
+                yield return null;
+            }
+            _currentMessage.gameObject.SetActive(false);
+            _coroutine.StopAllCoroutine();
         }
     }
 }

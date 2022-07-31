@@ -14,12 +14,14 @@ namespace StayFast
             var input = new InputController();
             var instantiate = empty.AddComponent<MonoFactory>();
             var coroutine = empty.AddComponent<CoroutineSystem>();
-            var stateController = new StateController(input, descriptions, canvas, coroutine);
+            var stateController = new StateController(input, descriptions, canvas, coroutine, instantiate);
 
             var menuFactory = new MenuFactory(instantiate, canvas);
             var view = menuFactory.CreateMenu();
             var menu = new MenuController(view, input, instantiate);
-            
+
+            update.Add(input);
+
         }
 
         public void Ghghghgf()

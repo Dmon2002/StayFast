@@ -12,8 +12,12 @@ namespace StayFast
 
         public void GetESC(Action action)
         {
-            Debug.Log($"Заходим сюда каждый кадр");
             if(Input.GetKeyDown(KeyCode.Escape)) action?.Invoke(); 
+        }
+
+        public void OnRightMouse(Action action)
+        {
+            if(Input.GetMouseButtonDown(0)) action?.Invoke();
         }
     }
 }
