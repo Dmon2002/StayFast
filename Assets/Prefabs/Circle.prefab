@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8681671095495700340}
   - component: {fileID: 8681671095495700341}
   - component: {fileID: 8681671095495700343}
+  - component: {fileID: 2008135025739199719}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -100,10 +101,30 @@ MonoBehaviour:
   Puls: {fileID: 3316746143812015269, guid: 62b53d10f00b3cc4f9afbdb2d5622b48, type: 3}
   Min: {x: 0, y: 2.5}
   Max: {x: 0, y: -2.5}
-  slider: {fileID: 0}
   AdrenalinSpeed: 0
   AdrenalinSpeedPlus: 0
   AdrenalinSpeedMinus: 0
   IsTouched: 0
   colorActive: {r: 0, g: 0, b: 0, a: 0}
   colorPassive: {r: 0, g: 0, b: 0, a: 0}
+  animat: {fileID: 0}
+--- !u!95 &2008135025739199719
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8681671095495700339}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a03c30f43521634aa9c9c867f157899, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

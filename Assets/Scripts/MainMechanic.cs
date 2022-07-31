@@ -34,19 +34,20 @@ public class MainMechanic : MonoBehaviour
     private SpriteRenderer SR;
 
     private static Animator anim;
-
-   
+    public Animator animat;
+   private int day=1;
     private static bool IsActive=false;
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-        anim.enabled = false;
+      //  anim.enabled = false;
         SR = gameObject.GetComponent<SpriteRenderer>();
         SR.color = colorPassive;
         StartCoroutine(Timer());
         PulsReLocate();
         IsActive = true;//удалить
         slider = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
+        slider.value = slider.value + AdrenalinSpeed / 10f;
     }
 
     private void PulsReLocate()
@@ -74,6 +75,10 @@ public class MainMechanic : MonoBehaviour
     void Update()
     {
        
+        if(slider.value==0 && IsActive)
+        {
+            StartCoroutine(Timer()); 
+        }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && IsActive)
         {
             if (IsTouched)
@@ -125,9 +130,13 @@ public class MainMechanic : MonoBehaviour
         IsActive = true;
         anim.enabled = true;
     }
-    public static void NewDay()
+    public  void NewDay()
     {
+        slider.value = slider.value + AdrenalinSpeed / 10f;
         slider.value = 0;
         anim.enabled = true;
+        day++;
+        StartCoroutine(Timer());
+        animat.SetInteger("qwe", day);
     }
 }

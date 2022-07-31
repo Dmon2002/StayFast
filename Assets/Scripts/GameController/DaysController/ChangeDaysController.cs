@@ -79,7 +79,8 @@ namespace StayFast
             _currentMessage.gameObject.SetActive(false);
             _coroutine.StopAllCoroutine();
 
-            MainMechanic.NewDay();
+            //MainMechanic.NewDay();
+            GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>().NewDay();
 
             if (counter == 3)
             {
