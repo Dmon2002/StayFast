@@ -44,7 +44,7 @@ namespace StayFast
             _view.CloseAbout.gameObject.SetActive(false);
         }
 
-        private void OnClickPaused()
+        public void OnClickPaused()
         {
             Debug.Log($"{isPaused}");
             

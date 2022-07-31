@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace StayFast
 {
@@ -9,7 +7,7 @@ namespace StayFast
     {
         private GameObject empty = new GameObject("For components");
         
-        public GameInitialization(UpdateController update, AllDescriptions descriptions, Transform canvas)
+        public GameInitialization(UpdateController update, AllDescriptions descriptions, Transform canvas, Button button)
         {
             var input = new InputController();
             var instantiate = empty.AddComponent<MonoFactory>();
@@ -19,6 +17,7 @@ namespace StayFast
             var menuFactory = new MenuFactory(instantiate, canvas);
             var view = menuFactory.CreateMenu();
             var menu = new MenuController(view, input, instantiate);
+            button.onClick.AddListener(menu.OnClickPaused);
 
             update.Add(input);
 
