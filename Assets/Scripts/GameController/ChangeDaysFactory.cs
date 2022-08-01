@@ -20,10 +20,11 @@ namespace StayFast
 
         public ChangeDaysController CreateController()
         {
+            //var bloknot = description.NightConfig.Bloknot;
             var nightView = description.NightConfig.NightView;
             var tube = description.NightConfig.TubeSprite;
             var massage = description.NightConfig.MessageView;
-            var result = new ChangeDaysController(nightView, tube, massage, input, _coroutine, _profile);
+            var result = new ChangeDaysController(description.NightConfig.Bloknot, nightView, tube, massage, input, _coroutine, _profile);
 
             return result;
         }

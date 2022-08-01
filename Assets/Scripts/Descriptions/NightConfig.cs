@@ -7,6 +7,8 @@ namespace StayFast
     [CreateAssetMenu(fileName = "NightConfig", menuName = "Descriptions/NightConfig")]
     public class NightConfig : ScriptableObject
     {
+
+        [SerializeField] public Sprite[] Bloknot;
         [SerializeField] private string nightImageString;
         [SerializeField] private string tubeString;
         [SerializeField] private string massageString;
@@ -14,13 +16,13 @@ namespace StayFast
 
         private TubeView tubeSprite;
         private MessageView _messageSprite;
-        private NightView _animator;
-
+       
         public TubeView TubeSprite => Loading<TubeView>(tubeString);
 
         public MessageView MessageView => Loading<MessageView>(massageString);
 
         public NightView NightView => Loading<NightView>(nightImageString);
+
         
         public static T Loading<T>(string path) where T : Component
         {

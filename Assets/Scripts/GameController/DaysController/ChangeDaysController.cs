@@ -5,6 +5,7 @@ namespace StayFast
 {
     public class ChangeDaysController : BaseController
     {
+        private Sprite[] Bloknot; 
         private readonly InputController _input;
         private NightView _nightView;
         private TubeView _tube;
@@ -15,9 +16,10 @@ namespace StayFast
         private int counter;
         private const float speed = 3f;
         
-        public ChangeDaysController(NightView nightView, TubeView tube, MessageView messageView, 
+        public ChangeDaysController(Sprite[] bloknot, NightView nightView, TubeView tube, MessageView messageView, 
             InputController input, CoroutineSystem coroutine, ProfilePlayer profile)
         {
+            Bloknot = bloknot;
             _nightView = nightView;
             _tube = tube;
             _currentMessage = messageView;
@@ -34,12 +36,13 @@ namespace StayFast
             _nightView.gameObject.SetActive(true);
             _nightView.Sleeping.enabled = true;
             yield return new WaitForSeconds(0.5f);              //todo магическое число
-                
+
             /*
             _currentMessage - это блокнот. Ему можно добавлять свойства и изменять их здесь при перемене дей
             _currentMessage.SetSprite(massage);
             */
-
+            
+            _currentMessage.SetSprite(Bloknot[counter]);
             
         }
 
@@ -54,7 +57,7 @@ namespace StayFast
             _nightView.Sleeping.enabled = false;
             _currentMessage.gameObject.SetActive(true);
 
-            while (_currentMessage.gameObject.transform.position.y < -3.30)
+            while (_currentMessage.gameObject.transform.position.y < 0)
             {
                 _currentMessage.gameObject.transform.Translate(0, speed * Time.deltaTime, 0);
                 yield return null;
@@ -73,7 +76,7 @@ namespace StayFast
 
         public IEnumerator CloseMessage()
         {
-            while (_currentMessage.position.position.y > -8)
+            while (_currentMessage.position.position.y > -12)
             {
                 _currentMessage.position.Translate(0, -speed * Time.deltaTime, 0);
                 yield return null;
