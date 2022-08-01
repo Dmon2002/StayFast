@@ -35,7 +35,8 @@ namespace StayFast
             _nightView.Sleeping.enabled = true;
             yield return new WaitForSeconds(0.5f);              //todo магическое число
                 
-            /*_tube.SetSprite(tube);          
+            /*
+            _currentMessage - это блокнот. Ему можно добавлять свойства и изменять их здесь при перемене дей
             _currentMessage.SetSprite(massage);
             */
 
