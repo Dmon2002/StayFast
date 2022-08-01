@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using StayFast;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class MainMechanic : MonoBehaviour
 {
 
@@ -35,17 +35,21 @@ public class MainMechanic : MonoBehaviour
 
     private static Animator anim;
     public Animator animat;
-   private int day=1;
+    public Animator animat2;
+    private int day=0;
     private static bool IsActive=false;
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-      //  anim.enabled = false;
+        anim.speed = 0;
+        animat.speed = 0;
+        animat2.speed = 0;
+        //  anim.enabled = false;
         SR = gameObject.GetComponent<SpriteRenderer>();
         SR.color = colorPassive;
         StartCoroutine(Timer());
         PulsReLocate();
-        IsActive = true;//удалить
+       // IsActive = true;//удалить
         slider = GameObject.FindGameObjectWithTag("Slider").GetComponent<Slider>();
         slider.value = slider.value + AdrenalinSpeed / 10f;
     }
@@ -53,7 +57,7 @@ public class MainMechanic : MonoBehaviour
     private void PulsReLocate()
     {
         Puls.transform.localPosition = new Vector3(transform.localPosition.x, Random.Range(Min.y, Max.y), transform.localPosition.z);
-        print("Relocate");
+        //print("Relocate");
         
     }
     IEnumerator Timer()
@@ -75,10 +79,6 @@ public class MainMechanic : MonoBehaviour
     void Update()
     {
        
-        if(slider.value==0 && IsActive)
-        {
-            StartCoroutine(Timer()); 
-        }
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0) && IsActive)
         {
             if (IsTouched)
@@ -117,26 +117,37 @@ public class MainMechanic : MonoBehaviour
 
     public static void BadEndStart()
     {
-        
+        SceneManager.LoadScene(2);
     }
 
-    public static void AnimationStop()
+    public  void AnimationStop()
     {
         IsActive =false;
-        anim.enabled = false;
+        anim.speed=0;
+        animat.speed = 0;
+        animat2.speed = 0;
     }
-    public static void AnimationGO()
+    public  void AnimationGO()
     {
         IsActive = true;
-        anim.enabled = true;
+        anim.speed = 1;
+        animat.speed = 1;
+        animat2.speed = 1;
     }
     public  void NewDay()
     {
-        slider.value = slider.value + AdrenalinSpeed / 10f;
         slider.value = 0;
-        anim.enabled = true;
+        anim.speed = 1;
+        animat.speed = 1;
+        animat2.speed = 1;
+
         day++;
         StartCoroutine(Timer());
         animat.SetInteger("qwe", day);
+
+        if (day == 4)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 }

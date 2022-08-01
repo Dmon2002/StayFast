@@ -30,7 +30,7 @@ namespace StayFast
         {
             int count = 0;
 
-            while (count < 3)
+            while (count < 10)
             {
                 yield return new WaitForSeconds(1);
                 count++;
@@ -38,11 +38,11 @@ namespace StayFast
                 // todo здесь отображаем время на UI
             }
 
-            _soundLocator.StopAudio(ClipType.Soft);
-            MainMechanic.AnimationStop();
+            //_soundLocator.StopAudio(ClipType.Soft);
+            GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>().AnimationStop();
 
             Sounding.StopAudio(ClipType.Soft);
-            MainMechanic.AnimationStop();
+            //MainMechanic.AnimationStop();
 
 
             var tube = tubeStack.Pop();

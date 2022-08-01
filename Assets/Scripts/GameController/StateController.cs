@@ -1,6 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 namespace StayFast
 {
     public class StateController : BaseController
@@ -54,11 +54,12 @@ namespace StayFast
                 case GameState.Game:
                     _coroutine.Starting(_globalDays.Timer());
                     Debug.Log("Здесь запускаем основную механику");
-                    MainMechanic.AnimationGO();
+                    GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>().AnimationGO();
                     Sounding.PlayAudio(ClipType.Soft);
-                    MainMechanic.AnimationGO();
+                   //MainMechanic.AnimationGO();
                     break;
                 case GameState.End:
+                    SceneManager.LoadScene(3);
                     Debug.Log("Запускаем финальное видео");
                     break;
             }

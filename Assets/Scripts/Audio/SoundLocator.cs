@@ -23,14 +23,14 @@ namespace StayFast
         public void PlayAudio(ClipType type)
         {
             var sound = audioDictionary[type];
-            sound.enabled = true;
+           // sound.enabled = true;
             sound.Play();
         }
 
         public void StopAudio(ClipType type)
         {
             var sound = audioDictionary[type];
-            sound.enabled = false;
+            //sound.enabled = false;
             sound.Stop();
         }
 
