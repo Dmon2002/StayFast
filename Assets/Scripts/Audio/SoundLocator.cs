@@ -20,6 +20,7 @@ namespace StayFast
             }
         }
 
+        /*
         public void PlayAudio(ClipType type)
         {
             var sound = audioDictionary[type];
@@ -33,6 +34,7 @@ namespace StayFast
             //sound.enabled = false;
             sound.Stop();
         }
+        */
 
 
     }

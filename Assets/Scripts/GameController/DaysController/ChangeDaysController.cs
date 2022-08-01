@@ -35,8 +35,9 @@ namespace StayFast
             _nightView.Sleeping.enabled = true;
             yield return new WaitForSeconds(0.5f);              //todo магическое число
                 
-            _tube.SetSprite(tube);          
+            /*_tube.SetSprite(tube);          
             _currentMessage.SetSprite(massage);
+            */
 
             
         }
@@ -49,7 +50,6 @@ namespace StayFast
         public IEnumerator OnEndNight()
         {
             
-            _input.OnLeftMouseDown += AfterInput;
             _nightView.Sleeping.enabled = false;
             _currentMessage.gameObject.SetActive(true);
 
@@ -60,6 +60,7 @@ namespace StayFast
                 
             }
             
+            _input.OnLeftMouseDown += AfterInput;
         }
 
         public void AfterInput()

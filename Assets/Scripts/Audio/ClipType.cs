@@ -4,7 +4,7 @@ namespace StayFast
     {
         Soft,
         Hard,
-        Ambience,
+        StayFast,
         Paper,
         TapeLose,
         TapeWin

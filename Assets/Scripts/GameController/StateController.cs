@@ -28,11 +28,7 @@ namespace StayFast
             _profilePlayer = new ProfilePlayer();
             _profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
             OnChangeGameState(_profilePlayer.CurrentState.Value);
-            var locator = instantiate.Instant(_allDescriptions.SoundLocator.gameObject, new GameObject("SoundLocator").transform);
-
-            _soundLocator = locator.GetComponent<SoundLocator>();
-            _soundLocator.Init();
-            Sounding.Init(_soundLocator.AudioDictionary);
+            
 
             // нужен спаун-контроллер, и класс, который бы собирал ChangeDaysController
             _changeDaysFactory = new ChangeDaysFactory(allDescriptions, instantiate, input, coroutine, _profilePlayer);
