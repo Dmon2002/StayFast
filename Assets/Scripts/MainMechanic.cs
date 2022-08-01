@@ -140,7 +140,7 @@ public class MainMechanic : MonoBehaviour
         animat.speed = 1;
         animat2.speed = 1;
 
-        AdrenalinSpeed += 2;
+        AdrenalinSpeed += 1.6f;
         AdrenalinSpeedPlus += AdrenalinSpeedPlus;
         AdrenalinSpeedMinus += 2;
         
@@ -160,7 +160,7 @@ public class MainMechanic : MonoBehaviour
     {
         slider.value = 0;
         
-        AdrenalinSpeed = 4;
+        AdrenalinSpeed = 4.2f;
         AdrenalinSpeedPlus = 4;
         AdrenalinSpeedMinus = 4;
     }

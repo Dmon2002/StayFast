@@ -1809,7 +1809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8681671095495700343, guid: a7f9e20f3cbd29345b7ed61da26258a9, type: 3}
       propertyPath: AdrenalinSpeed
-      value: 4
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8681671095495700343, guid: a7f9e20f3cbd29345b7ed61da26258a9, type: 3}
       propertyPath: colorPassive.a
