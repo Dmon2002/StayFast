@@ -92,7 +92,6 @@ public class MainMechanic : MonoBehaviour
             {
 
                 Sounding.PlayAudio(ClipType.TapeWin);
-           
                 slider.value = slider.value + AdrenalinSpeedPlus;
             }
         }
@@ -141,6 +140,12 @@ public class MainMechanic : MonoBehaviour
         animat.speed = 1;
         animat2.speed = 1;
 
+        AdrenalinSpeed += 2;
+        AdrenalinSpeedPlus += AdrenalinSpeedPlus;
+        AdrenalinSpeedMinus += 2;
+        
+        Debug.Log($" speed {AdrenalinSpeed}, <color=red>plus {AdrenalinSpeedPlus}</color>, minus {AdrenalinSpeedMinus}");
+
         day++;
         StartCoroutine(Timer());
         animat.SetInteger("qwe", day);
@@ -149,5 +154,14 @@ public class MainMechanic : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
+    }
+
+    public void ResetSpeed()
+    {
+        slider.value = 0;
+        
+        AdrenalinSpeed = 4;
+        AdrenalinSpeedPlus = 4;
+        AdrenalinSpeedMinus = 4;
     }
 }

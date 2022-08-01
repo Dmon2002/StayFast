@@ -14,8 +14,8 @@ namespace StayFast
         private GlobalDaysController _globalDays;
         private ChangeDaysFactory _changeDaysFactory;
         private CoroutineSystem _coroutine;
-
         private SoundLocator _soundLocator;
+        private readonly MainMechanic _mainMechanic;
 
         
 
@@ -25,12 +25,12 @@ namespace StayFast
             _input = input;
             _allDescriptions = allDescriptions;
             _coroutine = coroutine;
+            _mainMechanic = GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>();
+            _mainMechanic.ResetSpeed();
             _profilePlayer = new ProfilePlayer();
             _profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
             OnChangeGameState(_profilePlayer.CurrentState.Value);
             
-
-            // нужен спаун-контроллер, и класс, который бы собирал ChangeDaysController
             _changeDaysFactory = new ChangeDaysFactory(allDescriptions, instantiate, input, coroutine, _profilePlayer);
             _changeDays = _changeDaysFactory.CreateController();
             _globalDays = new GlobalDaysController(allDescriptions, coroutine, _changeDays);
@@ -50,7 +50,8 @@ namespace StayFast
                 case GameState.Game:
                     _coroutine.Starting(_globalDays.Timer());
                     Debug.Log("Здесь запускаем основную механику");
-                    GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>().AnimationGO();
+                    _mainMechanic.NewDay();
+                    _mainMechanic.AnimationGO();
                     Sounding.PlayAudio(ClipType.Soft);
                    //MainMechanic.AnimationGO();
                     break;

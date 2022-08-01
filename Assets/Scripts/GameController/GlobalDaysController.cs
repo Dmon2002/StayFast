@@ -14,6 +14,8 @@ namespace StayFast
         private Stack<Sprite> massageStack;
         private CoroutineSystem _coroutine;
 
+        private int dayLenght = 10;
+
         public GlobalDaysController(AllDescriptions descriptions, CoroutineSystem coroutine, ChangeDaysController daysController)
         {
             tubeStack = descriptions.DaysConfig.TubeSprite;
@@ -30,7 +32,7 @@ namespace StayFast
         {
             int count = 0;
 
-            while (count < 10)
+            while (count < dayLenght)
             {
                 yield return new WaitForSeconds(1);
                 count++;
@@ -38,7 +40,10 @@ namespace StayFast
                 // todo здесь отображаем время на UI
             }
 
+            dayLenght += 8;
+            
             //_soundLocator.StopAudio(ClipType.Soft);
+            
             GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>().AnimationStop();
 
             Sounding.StopAudio(ClipType.Soft);

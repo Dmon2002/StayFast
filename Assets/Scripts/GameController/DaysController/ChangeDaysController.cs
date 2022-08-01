@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace StayFast
 {
@@ -13,8 +14,10 @@ namespace StayFast
         private CoroutineSystem _coroutine;
         private readonly ProfilePlayer _profile;
         
+        
         private int counter;
-        private const float speed = 3f;
+        private int maxDays => Bloknot.Length;
+        private const float speed = 6f;
         
         public ChangeDaysController(Sprite[] bloknot, NightView nightView, TubeView tube, MessageView messageView, 
             InputController input, CoroutineSystem coroutine, ProfilePlayer profile)
@@ -26,7 +29,7 @@ namespace StayFast
             _input = input;
             _coroutine = coroutine;
             _profile = profile;
-            
+
             _nightView.OnEndNight += StartMessage;
         }
 
@@ -42,13 +45,17 @@ namespace StayFast
             _currentMessage.SetSprite(massage);
             */
             
-            _currentMessage.SetSprite(Bloknot[counter]);
+            if(counter < maxDays)
+                _currentMessage.SetSprite(Bloknot[counter]);
             
         }
 
         public void StartMessage()
         {
-            _coroutine.Starting(OnEndNight());
+            if(counter < maxDays)
+                _coroutine.Starting(OnEndNight());
+            if(counter == maxDays)
+                SceneManager.LoadScene(3);
         }
 
         public IEnumerator OnEndNight()
@@ -63,6 +70,7 @@ namespace StayFast
                 yield return null;
                 
             }
+            
             
             _input.OnLeftMouseDown += AfterInput;
         }
@@ -83,9 +91,6 @@ namespace StayFast
             }
             _currentMessage.gameObject.SetActive(false);
             _coroutine.StopAllCoroutine();
-
-            //MainMechanic.NewDay();
-            GameObject.FindGameObjectWithTag("qwe").GetComponent<MainMechanic>().NewDay();
 
             if (counter == 3)
             {
