@@ -55,13 +55,29 @@ public class SceneLoader : MonoBehaviour
 
         if (_videoPlayer.frame+4 >= numberFramesInVideo)
         {
-           
-            SceneManager.LoadScene(1);
+            StartCoroutine(LoadScene());
         }
 
         if (Input.GetKeyUp(KeyCode.Escape) | Input.GetKeyUp(KeyCode.Return))
-        { SceneManager.LoadScene(1); }
+        { StartCoroutine(LoadScene()); }
 
     }
+    IEnumerator LoadScene()
+    {
+        yield return null;
 
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(1);
+        asyncOperation.allowSceneActivation = false;
+        while (!asyncOperation.isDone)
+        {
+           // m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
+
+            if (asyncOperation.progress >= 0.9f)
+            {
+                asyncOperation.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
+    }
 }
